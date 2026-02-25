@@ -157,3 +157,82 @@ Leader key: `Space`
 | `:q!` | Quit without saving |
 | `:vs` | Vertical split |
 | `:sp` | Horizontal split |
+
+---
+
+# Tmux Commands
+
+Prefix key: `Ctrl + A` (press and release, then press the next key)
+
+## Sessions
+
+| Keys | Action |
+|------|--------|
+| `tmux` | Start a new session (run in terminal) |
+| `tmux new -s name` | Start a new named session (run in terminal) |
+| `tmux ls` | List sessions (run in terminal) |
+| `tmux a` | Attach to last session (run in terminal) |
+| `tmux a -t name` | Attach to named session (run in terminal) |
+| `tmux kill-session -t name` | Kill named session (run in terminal) |
+| `Prefix d` | Detach from current session |
+| `Prefix s` | List and switch sessions (interactive) |
+| `Prefix $` | Rename current session |
+
+## Windows (Tabs)
+
+| Keys | Action |
+|------|--------|
+| `Prefix c` | Create new window |
+| `Prefix ,` | Rename current window |
+| `Prefix n` | Next window |
+| `Prefix p` | Previous window |
+| `Prefix 0-9` | Jump to window by number |
+| `Prefix w` | List windows (interactive picker) |
+| `Prefix &` | Close current window (confirms) |
+
+## Panes (Splits)
+
+| Keys | Action |
+|------|--------|
+| `Prefix %` | Split pane vertically (left/right) |
+| `Prefix "` | Split pane horizontally (top/bottom) |
+| `Prefix x` | Close current pane (confirms) |
+| `Prefix z` | Toggle pane zoom (fullscreen/restore) |
+| `Prefix Space` | Cycle through pane layouts |
+| `Prefix q` | Show pane numbers, then press number to jump |
+| `Prefix {` | Swap pane with previous |
+| `Prefix }` | Swap pane with next |
+| `Prefix !` | Convert pane into its own window |
+
+### Pane Resizing
+
+| Keys | Action |
+|------|--------|
+| `Prefix Ctrl+Arrow` | Resize pane in arrow direction (small) |
+| `Prefix Alt+Arrow` | Resize pane in arrow direction (large) |
+
+> **Note:** Pane *navigation* is handled by nvim-tmux-navigation (`Ctrl + H/J/K/L`),
+> so you can move seamlessly between Nvim splits and Tmux panes.
+
+## Copy Mode (Scrollback)
+
+| Keys | Action |
+|------|--------|
+| `Prefix [` | Enter copy/scroll mode |
+| `q` | Exit copy mode |
+| `Arrow keys / h j k l` | Navigate in copy mode |
+| `Ctrl + U` | Scroll up half page |
+| `Ctrl + D` | Scroll down half page |
+| `/text` | Search forward in scrollback |
+| `?text` | Search backward in scrollback |
+| `n` | Next search match |
+| `N` | Previous search match |
+
+## Typical Workflow
+
+1. `tmux new -s project` -- start a named session
+2. `Prefix %` or `Prefix "` -- split into panes as needed
+3. `Ctrl + H/J/K/L` -- move between Nvim and terminal panes
+4. `Prefix c` -- open a new window for a different task
+5. `Prefix d` -- detach when done; session keeps running
+6. `tmux a -t project` -- reattach later, everything is still there
